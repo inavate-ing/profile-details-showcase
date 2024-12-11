@@ -3,9 +3,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface UserListProps {
     users: User[];
+    selectedUserId: number | null;
+    onSelectUser: (user: User) => void;
 }
 
-const UserList = ({users}: UserListProps) => {
+const UserList = ({users, selectedUserId, onSelectUser}: UserListProps) => {
     return (
         <div className="w-64 border-r border-slate-200 h-full overflow-y-auto">
             <div className="p-4 border-b border-slate-200">
@@ -15,7 +17,10 @@ const UserList = ({users}: UserListProps) => {
                 {users.map((user) => (
                     <button
                         key={user.id}
-                        className="w-full text-left px-4 py-2 hover:bg-slate-50 transition-colors flex items-center gap-3"
+                        onClick={() => onSelectUser(user)}
+                        className={`w-full text-left px-4 py-2 hover:bg-slate-50 transition-colors flex items-center gap-3 ${
+                            selectedUserId === user.id ? 'bg-slate-100' : ''
+                        }`}
                     >
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user.avatar} alt={user.name} loading="lazy"/>
