@@ -5,6 +5,7 @@ import {User} from "@/types";
 import {users} from "@/lib/mockData";
 
 import UserList from "@/components/UserList";
+import UserDetail from "@/components/UserDetail";
 import ActionPanel from "@/components/ActionPanel";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
                 selectedUserId={selectedUser?.id || null}
                 onSelectUser={setSelectedUser}
             />
+            <UserDetail user={selectedUser}/>
             <ActionPanel isVisible={selectedUser !== null}/>
         </div>
     );
